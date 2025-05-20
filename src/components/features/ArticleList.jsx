@@ -1,9 +1,10 @@
 import React from 'react';
 import useFetch from '../../hooks/useFetch.js';
 import ArticleListItem from './ArticleListItem.jsx';
+import { Link } from 'react-router-dom'; 
 
 const ArticleList = () => {
-  // *** IMPORTANT: REPLACE WITH YOUR LIVE BACKEND API URL ***
+  
   const backendBaseUrl = 'https://news-be-1493.onrender.com/api';
   const { data, isLoading, error } = useFetch(`${backendBaseUrl}/articles`);
 
@@ -24,7 +25,11 @@ const ArticleList = () => {
       <h3>Latest Articles</h3>
       <ul>
         {data.articles.map((article) => (
-          <ArticleListItem key={article.article_id} article={article} />
+          <li key={article.article_id}>
+            <Link to={`/articles/${article.article_id}`}>
+              {article.title}
+            </Link>
+          </li>
         ))}
       </ul>
     </section>
