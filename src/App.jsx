@@ -1,11 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './components/pages/HomePage.jsx';
 import Header from './components/layout/Header.jsx';
+import SingleArticlePage from './components/pages/SingleArticlePage.jsx';
 
-const SingleArticlePage = () => <div>Single Article Page (Coming Soon!)</div>;
 const ArticlesByTopicPage = () => <div>Articles By Topic Page (Coming Soon!)</div>;
 
 const App = () => {
+
   return (
     <BrowserRouter>
       <Header />
