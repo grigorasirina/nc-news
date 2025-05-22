@@ -4,9 +4,9 @@ import { format } from 'date-fns';
 const ArticleDetail = ({ article }) => {
   return (
     <article>
-      <h2>{article.title}</h2>
-      <p>By {article.author} on {format(new Date(article.created_at), 'MMMM dd, yyyy, HH:mm')}</p> 
-      <p>Topic: {article.topic}</p>
+      <h2 className="article-title">{article.title}</h2>
+      <p className="article-name">By {article.author} on {format(new Date(article.created_at), 'MMMM dd, yyyy, HH:mm')}</p> 
+      <p className="article-topic">Topic: {article.topic}</p>
       <span style={{ color: 'green' }}>
         {article.article_img_url && (
           <img
@@ -16,7 +16,7 @@ const ArticleDetail = ({ article }) => {
           />
         )}
       </span>
-      <p>{article.body}</p>
+      <p className="=article-body">{article.body}</p>
     </article>
   );
 };

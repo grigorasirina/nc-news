@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const ArticleList = () => {
   
-  const backendBaseUrl = 'https://news-be-1493.onrender.com/api';
+  const backendBaseUrl = 'https://be-nc-news-example-46vu.onrender.com/api';
   const { data, isLoading, error } = useFetch(`${backendBaseUrl}/articles`);
 
   if (isLoading) {
@@ -22,7 +22,7 @@ const ArticleList = () => {
 
   return (
     <section>
-      <h3>Latest Articles</h3>
+      <h3 className='lastest-articles'>Latest Articles</h3>
       <ul>
         {data.articles.map((article) => (
           <li key={article.article_id}>

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './components/pages/HomePage.jsx';
 import Header from './components/layout/Header.jsx';
 import SingleArticlePage from './components/pages/SingleArticlePage.jsx';
+import './App.css';
 
 const ArticlesByTopicPage = () => <div>Articles By Topic Page (Coming Soon!)</div>;
 
