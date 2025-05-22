@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const ArticleList = () => {
   
-  const backendBaseUrl = 'https://news-be-1493.onrender.com/api';
+  const backendBaseUrl = 'https://be-nc-news-example-46vu.onrender.com/api';
   const { data, isLoading, error } = useFetch(`${backendBaseUrl}/articles`);
 
   if (isLoading) {

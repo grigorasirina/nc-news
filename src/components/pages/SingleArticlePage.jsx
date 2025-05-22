@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch.js';
 import ArticleDetail from '../features/ArticleDetail.jsx';
-import CommentList from '../features/CommentList.jsx';
 
 const SingleArticlePage = () => {
   const { article_id } = useParams(); 
-  const backendBaseUrl = 'https://news-be-1493.onrender.com/api';
+  const backendBaseUrl = 'https://be-nc-news-example-46vu.onrender.com/api';
 
 const {
     data: articleData,
@@ -20,7 +19,7 @@ const {
     error: commentsError
   } = useFetch(`${backendBaseUrl}/articles/${article_id}/comments`);
 
-  if (isArticleLoading || isCommentsLoading) {
+  if (isArticleLoading) {
     return <p>Loading content...</p>;
   }
 
@@ -29,23 +28,13 @@ const {
     return <p>Error loading article: {articleError.message}</p>;
   }
 
-  if (commentsError) {
-    console.error("Error loading comments:", commentsError);
-    return <p>Error loading comments: {commentsError.message}</p>;
-  }
-
   if (!articleData || !articleData.article) {
     return <p>Article not found.</p>;
   }
 
-const commentsToDisplay = commentsData && Array.isArray(commentsData.comments)
-    ? commentsData.comments
-    : [];
-
   return (
     <main>
       <ArticleDetail article={articleData.article} />
-      <CommentList comments={commentsToDisplay} /> 
     </main>
   );
 };
