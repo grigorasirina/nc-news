@@ -21,6 +21,11 @@ const ArticlesByTopicPage = () => {
       .catch((err) => {
         setError('Failed to load articles for this topic.');
         console.error('Error fetching articles by topic:', err);
+        if (err.response && err.response.status === 404) {
+          setError(`Topic '${topic_slug}' not found.`);
+        } else {
+          setError('Failed to load articles for this topic. Please try again later.');
+        }
       })
       .finally(() => {
         setLoading(false);

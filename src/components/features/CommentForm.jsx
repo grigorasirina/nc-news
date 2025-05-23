@@ -31,8 +31,20 @@ const CommentForm = ({ article_id, onCommentPosted }) => {
         setTimeout(() => setPostSuccess(false), 3000);
       })
       .catch((err) => {
-        setPostError('Failed to post comment. Please try again.');
         console.error("Error posting comment:", err);
+        if (err.response) {
+          if (err.response.status === 400 && err.response.data.msg === 'Missing required fields') {
+            setPostError('Please provide both a username and a comment body.');
+          } else if (err.response.status === 404 && err.response.data.msg === 'Article not found') {
+            setPostError('Cannot post comment: Article not found.');
+          } else if (err.response.status === 404 && err.response.data.msg === 'User not found') {
+            setPostError('Cannot post comment: User not found. Please use a valid username.');
+          } else {
+            setPostError('Failed to post comment. Please try again.');
+          }
+        } else {
+          setPostError('Network error. Failed to post comment.');
+        }
       })
       .finally(() => {
         setIsPosting(false);
