@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import { patchArticleVotes, fetchCommentsByArticleId } from '../../../Api';
+import { patchArticleVotes, fetchCommentsByArticleId, deleteCommentById } from '../../../Api';
 import CommentForm from './CommentForm';
 
 const ArticleDetail = ({ article }) => {
@@ -12,6 +12,14 @@ const ArticleDetail = ({ article }) => {
   const [comments, setComments] = useState([]);
   const [commentsLoading, setCommentsLoading] = useState(true);
   const [commentsError, setCommentsError] = useState(null);
+
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState(null);
+  const [deletedCommentId, setDeletedCommentId] = useState(null);
+
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+
+  const currentUser = 'tickle122';
 
   useEffect(() => {
     setCommentsLoading(true);
@@ -82,6 +90,37 @@ const ArticleDetail = ({ article }) => {
       });
     }
 
+    const handleDeleteComment = (comment_id) => {
+        setDeleteError(null);
+        setDeleteSuccess(false); 
+        setIsDeleting(true);
+        setDeletedCommentId(comment_id);
+
+        setComments((prevComments) =>
+          prevComments.filter((comment) => comment.comment_id !== comment_id)
+        );
+
+        deleteCommentById(comment_id)
+          .then(() => {
+            setDeleteSuccess(true);
+        setTimeout(() => setDeleteSuccess(false), 3000);
+          })
+          .catch((err) => {
+            setDeleteError('Failed to delete comment. Please try again.');
+            console.error("Error deleting comment:", err);
+            setComments((prevComments) => {
+              fetchCommentsByArticleId(article.article_id)
+                .then(setComments)
+                .catch(console.error);
+              return prevComments;
+            });
+          })
+          .finally(() => {
+            setIsDeleting(false);
+            setDeletedCommentId(null);
+          });
+      };
+
   return (
     <article>
       <h2 className="article-title">{article.title}</h2>
@@ -122,6 +161,9 @@ const ArticleDetail = ({ article }) => {
           <h3>Comments ({comments.length})</h3>
           {commentsLoading && <p>Loading comments...</p>}
           {commentsError && <p className="comments-error">{commentsError}</p>}
+          {deleteError && <p className="delete-error">{deleteError}</p>}
+        {deleteSuccess && <p className="delete-success">Comment deleted successfully!</p>}
+
           {!commentsLoading && !commentsError && comments.length === 0 && (
             <p>No comments yet. Be the first to comment!</p>
             )}
@@ -132,6 +174,17 @@ const ArticleDetail = ({ article }) => {
                     <p><strong>{comment.author}</strong> on {format(new Date(comment.created_at), 'MMM dd,yyyy')}</p>
                     <p>{comment.body}</p>
                     <p>Votes: {comment.votes}</p>
+
+                    {comment.author === currentUser && (
+                  <button
+                    onClick={() => handleDeleteComment(comment.comment_id)}
+                    className="delete-comment-button"
+                    disabled={isDeleting && deletedCommentId === comment.comment_id}
+                  >
+                    {isDeleting && deletedCommentId === comment.comment_id ? 'Deleting...' : 'Delete'}
+                  </button>
+                )}
+
                   </div>
                 </li>
               ))}

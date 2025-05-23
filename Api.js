@@ -36,3 +36,14 @@ export const fetchCommentsByArticleId = (article_id) => {
       throw error;
     });
 };
+
+ export const deleteCommentById = (comment_id) => {
+      return newsApi.delete(`/comments/${comment_id}`)
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          console.error("Error deleting comment:", error);
+          throw error;
+        });
+    };
