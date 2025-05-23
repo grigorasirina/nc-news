@@ -4,6 +4,21 @@ const newsApi = axios.create({
 baseURL: 'https://be-nc-news-example-46vu.onrender.com/api',
 });
 
+export const fetchArticles = (topic = null) => {
+    const params = {};
+    if (topic) {
+        params.topic = topic;
+    }
+    return newsApi.get('/articles', { params })
+        .then((response) => {
+            return response.data.articles;
+        })
+        .catch((error) => {
+            console.error('Error fetching articles:', error);
+            throw error;
+        });
+};
+
 export const patchArticleVotes = (article_id, inc_votes) => {
   return newsApi.patch(`/articles/${article_id}`, { inc_votes })
     .then((response) => {
@@ -47,3 +62,14 @@ export const fetchCommentsByArticleId = (article_id) => {
           throw error;
         });
     };
+
+    export const fetchTopics = () => {
+    return newsApi.get('/topics')
+        .then((response) => {
+            return response.data.topics;
+        })
+        .catch((error) => {
+            console.error('Error fetching topics:', error);
+            throw error;
+        });
+};
