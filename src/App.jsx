@@ -4,6 +4,7 @@ import Header from './components/layout/Header.jsx';
 import SingleArticlePage from './components/pages/SingleArticlePage.jsx';
 import ArticlesByTopicPage from './components/pages/ArticlesByTopicPage.jsx';
 import TopicNav from './components/features/TopicNav.jsx';
+import NotFoundPage from './components/pages/NotFoundPage.jsx';
 import './App.css';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/articles/:article_id" element={<SingleArticlePage />} />
           <Route path="/articles/topic/:topic_slug" element={<ArticlesByTopicPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </BrowserRouter>

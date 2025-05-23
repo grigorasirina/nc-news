@@ -25,6 +25,9 @@ const {
 
   if (articleError) {
     console.error("Error loading article:", articleError);
+    if (articleError.response && articleError.response.status === 404) {
+      return <p className="error-message">Article not found.</p>;
+    }
     return <p>Error loading article: {articleError.message}</p>;
   }
 
