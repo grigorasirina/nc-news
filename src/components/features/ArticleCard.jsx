@@ -16,7 +16,7 @@ const ArticleCard = ({ article }) => {
       )}
 
       <div className="article-stats">
-        <span className="article-votes">Votes: {article.votes}</span>
+        <span className="article-votes">Votes: {article.votes} </span>
         <span className="article-comments">Comments: {article.comment_count}</span>
       </div>
 
