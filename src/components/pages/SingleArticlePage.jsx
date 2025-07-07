@@ -5,7 +5,7 @@ import ArticleDetail from '../features/ArticleDetail.jsx';
 
 const SingleArticlePage = () => {
   const { article_id } = useParams(); 
-  const backendBaseUrl = 'https://be-nc-news-example-46vu.onrender.com/api';
+  const backendBaseUrl = 'https://news-be-1493.onrender.com/api';
 
 const {
     data: articleData,
