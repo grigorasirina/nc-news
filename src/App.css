@@ -73,6 +73,9 @@ header h1 {
 
 header nav {
   margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 header nav a {
@@ -80,7 +83,7 @@ header nav a {
   text-decoration: none;
   margin: 0 10px;
   font-size: 0.95em; 
-  white-space: nowrap; 
+  padding: 5px 0;
 }
 
 .App {
