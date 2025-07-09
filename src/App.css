@@ -96,7 +96,7 @@ header nav a {
   text-align: center;
   color: #6a0dad;
   margin-bottom: 15px;
-  font-size: 2em;
+  font-size: 3em;
   font-weight: bold;
   letter-spacing: 2px;
   font-family: cursive;
@@ -115,7 +115,7 @@ header nav a {
   color: #555555;
   margin-bottom: 10px;
   text-align: left;
-  margin-left: 125px;
+  margin-left: 0;
 }
 
 .article-topic {
