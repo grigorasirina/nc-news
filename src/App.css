@@ -73,6 +73,9 @@ header h1 {
 
 header nav {
   margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 header nav a {
@@ -80,7 +83,7 @@ header nav a {
   text-decoration: none;
   margin: 0 10px;
   font-size: 0.95em; 
-  white-space: nowrap; 
+  padding: 5px 0;
 }
 
 .App {
@@ -90,6 +93,7 @@ header nav a {
   background-color: #e4d8f5;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flexbox;
 }
 
 .app-title {
@@ -143,6 +147,7 @@ header nav a {
   line-height: 1.6;
   margin-top: 15px;
   max-width: 100%;
+  display: flexbox;
 }
 
 .lastest-articles {
