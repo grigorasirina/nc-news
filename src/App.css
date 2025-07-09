@@ -142,6 +142,7 @@ header nav a {
   font-size: 1em;
   line-height: 1.6;
   margin-top: 15px;
+  max-width: 100%;
 }
 
 .lastest-articles {
@@ -163,6 +164,7 @@ header nav a {
   margin-top: 25px;
   margin-bottom: 25px;
   font-weight: bold;
+  max-width: 100%;
 }
 
 .comment-display-item p {
@@ -172,4 +174,5 @@ header nav a {
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: left;
+  max-width: 100%;
 }
